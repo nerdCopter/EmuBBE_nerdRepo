@@ -956,7 +956,8 @@ var FlightLogParser = function(logData) {
             case "yawRateAccelLimit":
             case "rateAccelLimit":
                 if((that.sysConfig.firmwareType == FIRMWARE_TYPE_BETAFLIGHT  && semver.gte(that.sysConfig.firmwareVersion, '3.1.0')) ||
-                   (that.sysConfig.firmwareType == FIRMWARE_TYPE_CLEANFLIGHT && semver.gte(that.sysConfig.firmwareVersion, '2.0.0'))) {
+                   (that.sysConfig.firmwareType == FIRMWARE_TYPE_CLEANFLIGHT && semver.gte(that.sysConfig.firmwareVersion, '2.0.0')) ||
+                   (that.sysConfig.firmwareType == FIRMWARE_TYPE_EMUFLIGHT)) {
                     that.sysConfig[fieldName] = parseInt(fieldValue, 10)/1000;
                 } else {
                     that.sysConfig[fieldName] = parseInt(fieldValue, 10);
@@ -1097,10 +1098,6 @@ var FlightLogParser = function(logData) {
                         $('html').removeClass('isINAV');
                         $('html').removeClass('isEMUF');
 
-                        that.sysConfig.firmware        = parseFloat(matches[2] + '.' + matches[3]).toFixed(1);
-                        that.sysConfig.firmwarePatch   = (matches[5] != null)?parseInt(matches[5]):'0';
-                        that.sysConfig.firmwareVersion = that.sysConfig.firmware + '.' + that.sysConfig.firmwarePatch;
-
                     } else if (matches[1] === "EmuFlight") {
                        that.sysConfig.firmwareType = FIRMWARE_TYPE_EMUFLIGHT;
                        $('html').removeClass('isBaseF');
@@ -1109,11 +1106,12 @@ var FlightLogParser = function(logData) {
                        $('html').removeClass('isINAV');
                        $('html').addClass('isEMUF');
                        
-                       that.sysConfig.firmwareVersion = '3.8.0';
-                       that.sysConfig.firmware        = 3.7;
-                       that.sysConfig.firmwarePatch   = 0;
                     }
 
+                    that.sysConfig.firmware        = parseFloat(matches[2] + '.' + matches[3]).toFixed(1);
+                    that.sysConfig.firmwarePatch   = (matches[5] != null)?parseInt(matches[5]):'0';
+                    that.sysConfig.firmwareVersion = that.sysConfig.firmware + '.' + that.sysConfig.firmwarePatch;
+                    
                 } else {
 
                     /*
