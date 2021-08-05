@@ -117,7 +117,6 @@ function BlackboxLogViewer() {
         lastGraphZoom = GRAPH_DEFAULT_ZOOM; // QuickZoom function.
 
         function createNewBlackboxWindow(fileToOpen) {
-
             const gui = require('nw.gui');
             gui.Window.open(INITIAL_APP_PAGE,
             {
@@ -131,8 +130,32 @@ function BlackboxLogViewer() {
                     createdWindow.window.argv = fileToOpen;
                 }
             });
-
         }
+
+///////////////// import from Configurator
+    if (GUI.isNWJS()) {
+        console.log("GUI.isNWJS");
+        let nwWindow = GUI.nwGui.Window.get();
+        nwWindow.on('close', closeHandler);
+        nwWindow.on('new-win-policy', function(frame, url, policy) {
+            // do not open the window
+            policy.ignore();
+            // and open it in external browser
+            GUI.nwGui.Shell.openExternal(url);
+        });
+    } else if (GUI.isChromeApp()) {
+        console.log("GUI.isChromeApp");
+        chrome.app.window.onClosed.addListener(closeHandler); //does not seem to work with NW2
+        // This event does not actually get fired:
+        chrome.runtime.onSuspend.addListener(closeHandler);
+    }
+
+    function closeHandler() {
+        console.log("closing...");
+        this.hide();
+        this.close(true);
+    }
+///////////////// import from Configurator
 
     function blackboxTimeFromVideoTime() {
         return (video.currentTime - videoOffset) * 1000000 + flightLog.getMinTime();

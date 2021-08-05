@@ -3,9 +3,47 @@
 
 var TABS = {}; // filled by individual tab js file
 
+///////////////// import from Configurator (was empty)
 var GUI_control = function () {
-    
+    // check which operating system is user running
+    if (navigator.appVersion.indexOf("Win") != -1)          this.operating_system = "Windows";
+    else if (navigator.appVersion.indexOf("Mac") != -1)     this.operating_system = "MacOS";
+    else if (navigator.appVersion.indexOf("CrOS") != -1)    this.operating_system = "ChromeOS";
+    else if (navigator.appVersion.indexOf("Linux") != -1)   this.operating_system = "Linux";
+    else if (navigator.appVersion.indexOf("X11") != -1)     this.operating_system = "UNIX";
+    else this.operating_system = "Unknown";
+
+    // Check the method of execution
+    this.nwGui = null;
+    try {
+      this.nwGui = new nw.gui();
+      this.Mode = GUI_Modes.NWJS;
+    } catch (ex) {
+      if (window.chrome && chrome.storage && chrome.storage.local) {
+        this.Mode = GUI_Modes.ChromeApp;
+      } else {
+        this.Mode = GUI_Modes.Other;
+      }
+    }
+    console.log("GUI_Mode = ",this.Mode);
 };
+
+const GUI_Modes = {
+  NWJS: "NW.js",
+  ChromeApp: "Chrome",
+  Other: "Other"
+}
+
+GUI_control.prototype.isChromeApp = function () {
+  return this.Mode == GUI_Modes.ChromeApp;
+}
+GUI_control.prototype.isNWJS = function () {
+  return this.Mode == GUI_Modes.NWJS;
+}
+GUI_control.prototype.isOther = function () {
+  return this.Mode == GUI_Modes.Other;
+}
+///////////////// end import from Configurator
 
 // Timer managing methods
 
