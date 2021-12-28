@@ -940,13 +940,13 @@ var FlightLogParser = function(logData) {
                     var expoParams = parseCommaSeparatedString(fieldValue);
                     that.sysConfig.superExpoFactor    = expoParams[0];
                     that.sysConfig.superExpoFactorYaw = expoParams[1];
-
                 } else {
                     that.sysConfig.superExpoFactor = parseInt(fieldValue, 10);
                 }
             break;
 
             /* CSV packed values */
+
             case "rates":
             case "rate_limits":
             case "rollPID":
@@ -968,25 +968,30 @@ var FlightLogParser = function(logData) {
             case "rc_smoothing_filter":
             case "gyro_lowpass_dyn_hz":
             case "dterm_lpf_dyn_hz":
-            case "d_min":
                 that.sysConfig[fieldName] = parseCommaSeparatedString(fieldValue);
             break;
             case "magPID":
                 that.sysConfig.magPID = parseCommaSeparatedString(fieldValue,3); //[parseInt(fieldValue, 10), null, null];
             break;
-
-            case "feedforward_weight":
-                // Add it to the end of the rollPID, pitchPID and yawPID
+            case "d_min":
+                // Add Dmin values as Derivative numbers to PID array
+                 var dMinValues = parseCommaSeparatedString(fieldValue);
+                 that.sysConfig["rollPID"].push(dMinValues[0]);
+                 that.sysConfig["pitchPID"].push(dMinValues[1]);
+                 that.sysConfig["yawPID"].push(dMinValues[2]);
+            break;
+            case "ff_weight":
+                // Add feedforward values to the PID array
                 var ffValues = parseCommaSeparatedString(fieldValue);
                 that.sysConfig["rollPID"].push(ffValues[0]);
                 that.sysConfig["pitchPID"].push(ffValues[1]);
                 that.sysConfig["yawPID"].push(ffValues[2]);
             break;
+
             /* End of CSV packed values */
 
             case "vbatcellvoltage":
                 var vbatcellvoltageParams = parseCommaSeparatedString(fieldValue);
-
                 that.sysConfig.vbatmincellvoltage = vbatcellvoltageParams[0];
                 that.sysConfig.vbatwarningcellvoltage = vbatcellvoltageParams[1];
                 that.sysConfig.vbatmaxcellvoltage = vbatcellvoltageParams[2];
@@ -994,14 +999,12 @@ var FlightLogParser = function(logData) {
             case "currentMeter":
             case "currentSensor":
                 var currentMeterParams = parseCommaSeparatedString(fieldValue);
-
                 that.sysConfig.currentMeterOffset = currentMeterParams[0];
                 that.sysConfig.currentMeterScale = currentMeterParams[1];
             break;
             case "gyro.scale":
             case "gyro_scale":
                     that.sysConfig.gyroScale = hexToFloat(fieldValue);
-
                     /* Baseflight uses a gyroScale that'll give radians per microsecond as output, whereas Cleanflight produces degrees
                      * per second and leaves the conversion to radians per us to the IMU. Let's just convert Cleanflight's scale to
                      * match Baseflight so we can use Baseflight's IMU for both: */

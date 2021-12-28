@@ -244,8 +244,8 @@
 .header-dialog table td,
 .header-dialog .pid_titlebar th {
     padding: 1px;
-    width: 20%;
     background-color: #3f3e3e;
+    width: 15%;
 }
 
 .header-dialog table tr td {
