@@ -19,6 +19,8 @@ const concat = require('gulp-concat');
 const yarn = require("gulp-yarn");
 const rename = require('gulp-rename');
 const os = require('os');
+const git = require('gulp-git');
+const stream = require('stream');
 
 const DIST_DIR = './dist/';
 const APPS_DIR = './apps/';
@@ -26,6 +28,10 @@ const DEBUG_DIR = './debug/';
 const RELEASE_DIR = './release/';
 
 const LINUX_INSTALL_DIR = '/opt/emuflight';
+
+// Global variable to hold the change hash from when we get it, to when we use it.
+var gitChangeSetId;
+
 
 var nwBuilderOptions = {
     version: '0.48.4',
@@ -55,6 +61,10 @@ gulp.task('clean-debug', clean_debug);
 gulp.task('clean-release', clean_release);
 
 gulp.task('clean-cache', clean_cache);
+
+// Function definitions are processed before function calls.
+const getChangesetId = gulp.series(getHash, writeChangesetId);
+gulp.task('get-changeset-id', getChangesetId);
 
 const distRebuild = gulp.series(clean_dist, dist);
 gulp.task('dist', distRebuild);
@@ -409,6 +419,30 @@ function buildNWApps(platforms, flavor, dir, done) {
         console.log('No platform suitable for NW Build')
         done();
     }
+}
+
+
+function getHash(cb) {
+    git.revParse({args: '--short HEAD'}, function (err, hash) {
+        if (err) {
+            gitChangeSetId = 'unsupported';
+        } else {
+            gitChangeSetId = hash;
+        }
+        cb();
+    });
+}
+
+function writeChangesetId() {
+    var versionJson = new stream.Readable;
+    versionJson.push(JSON.stringify({
+        gitChangesetId: gitChangeSetId,
+        version: pkg.version
+        }, undefined, 2));
+    versionJson.push(null);
+    return versionJson
+        .pipe(source('version.json'))
+        .pipe(gulp.dest(DIST_DIR))
 }
 
 

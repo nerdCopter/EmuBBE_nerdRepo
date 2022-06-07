@@ -988,6 +988,15 @@ function BlackboxLogViewer() {
     
     $(document).ready(function() {
 
+        let version;
+        let gitChangesetId;
+        $.getJSON('version.json', function(data) {
+            version = data.version;
+            gitChangesetId = data.gitChangesetId;
+            console.log("doc ready version "+CONFIGURATOR.version+" ("+gitChangesetId+")");
+        });
+
+
         $('[data-toggle="tooltip"]').tooltip({trigger: "hover", placement: "auto bottom"}); // initialise tooltips
         $('[data-toggle="dropdown"]').dropdown(); // initialise menus
         $('a.auto-hide-menu').click(function() {
@@ -996,7 +1005,7 @@ function BlackboxLogViewer() {
 
         // Get Latest Version Information
         $("#viewer-version").text('You are using version ' + VIEWER_VERSION);
-        $(".viewer-version", statusBar).text('v'+VIEWER_VERSION);
+        $(".viewer-version", statusBar).text('v'+VIEWER_VERSION+" ("+gitChangesetId+")");
         try {
             $.getJSON('https://api.github.com/repos/emuflight/EmuFlight-Blackbox-Explorer/releases/latest',{},function(data){
                 latestVersion = data;
