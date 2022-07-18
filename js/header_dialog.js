@@ -1008,7 +1008,17 @@ function HeaderDialog(dialog, onSave) {
         renderSelect('dshot_bidir'              ,sysConfig.dshot_bidir, OFF_ON);
 
         renderSelect('dterm_filter_type'		,sysConfig.dterm_filter_type, FILTER_TYPE);
-        renderSelect('dterm_filter2_type'		,sysConfig.dterm_filter2_type, FILTER_TYPE);
+        if (typeof sysConfig.dterm_filter2_type === 'undefined' || sysConfig.dterm_filter2_type === null ) {
+        	console.log("sysConfig.dterm_filter2_type is null");
+        	$("#dLPF1Type").text("Type");
+        	$("#dLPF2Type").html("&nbsp;"); //needs space to retain layout
+        	renderSelect('dterm_filter2_type'		,"", "");
+        } else {
+        	console.log("sysConfig.dterm_filter2_type is Not null");
+        	$("#dLPF1Type").text("LPF1 Type"); //need to reset label otherwise will retain last text
+        	$("#dLPF2Type").text("LPF2 Type");
+        	renderSelect('dterm_filter2_type'		,sysConfig.dterm_filter2_type, FILTER_TYPE);
+        }
         setParameter('ptermSRateWeight'			,sysConfig.ptermSRateWeight,2);
         setParameter('dtermSetpointWeight'		,sysConfig.dtermSetpointWeight,2);
 
