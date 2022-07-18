@@ -1100,9 +1100,10 @@ function HeaderDialog(dialog, onSave) {
             setParameter('dterm_lpf_dyn_max_hz', sysConfig.dterm_lpf_dyn_hz[1], 0);
             $('.parameter td[name="dterm_filter_type"]').css('display', 'none');
             $('.parameter td[name="dterm_lpf_hz"]').css('display', 'none');
+        } else if(activeSysConfig.firmwareType != FIRMWARE_TYPE_EMUFLIGHT) {
+            $('.parameter td[name="dterm_filter2_type"]').css('display', 'none');
         } else {
-//            $('.parameter td[name="dterm_dyn_type"]').parent().css('display', 'none');
-            $('.parameter td[name="dterm_dyn_type"]').css('display', 'none');
+            $('.parameter td[name="dterm_dyn_type"]').parent().css('display', 'none');
             $('.parameter td[name="dterm_lpf_dyn_min_hz"]').css('display', 'none');
             $('.parameter td[name="dterm_lpf_dyn_max_hz"]').css('display', 'none');
         }
