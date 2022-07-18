@@ -752,7 +752,7 @@ function HeaderDialog(dialog, onSave) {
             setParameter('linear_thrust_high_output',sysConfig.linear_thrust_high_output, 0);
             setParameter('mixer_impl'           ,sysConfig.mixer_impl, 0);
             setParameter('mixer_laziness'       ,sysConfig.mixer_laziness, 0);
-            setParameter('dynamic_gyro_notch_q' ,sysConfig.dynamic_gyro_notch_q, 0);
+            setParameter('dynamic_gyro_width'       ,sysConfig.dynamic_gyro_width, 0);
             setParameter('dynamic_gyro_notch_min_hz',sysConfig.dynamic_gyro_notch_min_hz, 0);
             setParameter('dynamic_gyro_notch_max_hz',sysConfig.dynamic_gyro_notch_max_hz, 0);
         }
@@ -906,6 +906,18 @@ function HeaderDialog(dialog, onSave) {
             setParameter('rcSmoothingActiveCutoffsSp'   ,"0", 0);
             setParameter('rcSmoothingActiveCutoffsThr'  ,"0", 0);
        }
+
+            $('.parameter td[name="rc_smoothing_type"]').css('display', 'none');
+            $('.parameter td[name="rc_smoothing_cutoffs_1"]').css('display', 'none');
+            $('.parameter td[name="rc_smoothing_cutoffs_2"]').css('display', 'none');
+            $('.parameter td[name="rc_smoothing_filter_type_1"]').css('display', 'none');
+            $('.parameter td[name="rc_smoothing_filter_type_2"]').css('display', 'none');
+            $('.parameter td[name="rc_smoothing_rx_average"]').css('display', 'none');
+            $('.parameter td[name="rc_smoothing_debug_axis"]').css('display', 'none');
+            $('.parameter td[name="rc_smoothing_auto_factor"]').css('display', 'none');
+            $('.parameter td[name="rc_smoothing_active_cutoffs_1"]').css('display', 'none');
+            $('.parameter td[name="rc_smoothing_active_cutoffs_2"]').css('display', 'none');
+
 
         // D_MIN and rate_limits
         if (activeSysConfig.firmwareType == FIRMWARE_TYPE_BETAFLIGHT  && semver.gte(activeSysConfig.firmwareVersion, '4.0.0')) {
