@@ -231,6 +231,10 @@ var FlightLogParser = function(logData) {
             spa_yaw_p:null,
             spa_yaw_i:null,
             spa_yaw_d:null,
+            smith_predict_enabled:null,
+            smith_predict_str:null,
+            smith_predict_delay:null,
+            smith_predict_filt_hz:null,
             witchcraft_roll:null,
             witchcraft_pitch:null,
             witchcraft_yaw:null,
@@ -324,6 +328,7 @@ var FlightLogParser = function(logData) {
             IMUF_lowpass_pitch:null,                // Emuflight - IMUF lpf pitch
             IMUF_lowpass_yaw:null,                  // Emuflight - IMUF lpf yaw
             IMUF_acc_lpf_cutoff:null,               // Emuflight - IMUF acc cutoff
+            IMUF_ptn_order:null,
             IMUF_roll_q:null,                       // Emuflight - IMUF Q factor roll
             IMUF_pitch_q:null,                      // Emuflight - IMUF Q factor pitch
             IMUF_yaw_q:null,                        // Emuflight - IMUF Q factor yaw
@@ -716,6 +721,7 @@ var FlightLogParser = function(logData) {
             case "IMUF_lowpass_pitch":
             case "IMUF_lowpass_yaw":
             case "IMUF_acc_lpf_cutoff":
+            case "IMUF_ptn_order":
             case "IMUF_roll_q":
             case "IMUF_pitch_q":
             case "IMUF_yaw_q":
@@ -730,6 +736,10 @@ var FlightLogParser = function(logData) {
             case "spa_yaw_p":
             case "spa_yaw_i":
             case "spa_yaw_d":
+            case "smith_predict_enabled":
+            case "smith_predict_str":
+            case "smith_predict_delay":
+            case "smith_predict_filt_hz":
             case "witchcraft_roll":
             case "witchcraft_pitch":
             case "witchcraft_yaw":
