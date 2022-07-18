@@ -242,12 +242,7 @@ var
             "MANUAL"             
     ]),
 
-    FILTER_TYPE = makeReadOnly([
-        "PT1",
-        "BIQUAD",
-        "PT2",
-        "PT3",
-    ]),
+    FILTER_TYPE = [],
 
     DEBUG_MODE = [],
 
@@ -500,7 +495,11 @@ function adjustFieldDefsList(firmwareType, firmwareVersion) {
             "PT1", 
             "BIQUAD"
         ]);
-
+        FILTER_TYPE = makeReadOnly([
+            "PT1",
+            "BIQUAD",
+            "FIR",
+        ]);
         // Debug names
         DEBUG_MODE = DEBUG_MODE_COMPLETE.slice(0);
         DEBUG_MODE.splice(DEBUG_MODE.indexOf('MIXER'),        1);
@@ -621,7 +620,13 @@ function adjustFieldDefsList(firmwareType, firmwareVersion) {
             "PT3",
             "PT4",
         ]);
-
+        FILTER_TYPE = makeReadOnly([
+            "PT1",
+            "BIQUAD",
+            "PT2",
+            "PT3",
+            "PT4",
+        ]);
     } else {
         DEBUG_MODE = DEBUG_MODE_COMPLETE;
 
