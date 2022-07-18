@@ -28,7 +28,7 @@ const LINUX_INSTALL_DIR = '/opt/emuflight';
 var nwBuilderOptions = {
     version: '0.62.2',
     files: './dist/**/*',
-    macIcns: './images/bf_icon.icns',
+    macIcns: './images/emu_icon.icns',
     macPlist: { 'CFBundleDisplayName': 'EmuFlight Blackbox Explorer'},
     winIco: './images/emu_icon.ico',
 };
@@ -80,7 +80,7 @@ gulp.task('default', debugBuild);
 // Get platform from commandline args
 // #
 // # gulp <task> [<platform>]+        Run only for platform(s) (with <platform> one of --linux64, --linux32, --osx64, --win32 or --win64)
-// # 
+// #
 function getInputPlatforms() {
     var supportedPlatforms = ['linux64', 'linux32', 'osx64', 'win32', 'win64'];
     var platforms = [];
@@ -93,7 +93,7 @@ function getInputPlatforms() {
              console.log('Unknown platform: ' + arg);
              process.exit();
         }
-    }  
+    }
 
     if (platforms.length === 0) {
         var defaultPlatform = getDefaultPlatform();
@@ -187,24 +187,24 @@ function getReleaseFilename(platform, ext, portable = false) {
     return `${pkg.name}_${pkg.version}_${platform}${portable ? "-portable" : ""}.${ext}`;
 }
 
-function clean_dist() { 
-    return del([DIST_DIR + '**'], { force: true }); 
+function clean_dist() {
+    return del([DIST_DIR + '**'], { force: true });
 };
 
-function clean_apps() { 
-    return del([APPS_DIR + '**'], { force: true }); 
+function clean_apps() {
+    return del([APPS_DIR + '**'], { force: true });
 };
 
-function clean_debug() { 
-    return del([DEBUG_DIR + '**'], { force: true }); 
+function clean_debug() {
+    return del([DEBUG_DIR + '**'], { force: true });
 };
 
-function clean_release() { 
-    return del([RELEASE_DIR + '**'], { force: true }); 
+function clean_release() {
+    return del([RELEASE_DIR + '**'], { force: true });
 };
 
-function clean_cache() { 
-    return del(['./cache/**'], { force: true }); 
+function clean_cache() {
+    return del(['./cache/**'], { force: true });
 };
 
 // Real work for dist task. Done in another task to call it via
@@ -292,8 +292,8 @@ function post_build(arch, folder, done) {
         var libSrc = './library/' + arch + '/libffmpeg.so'
         var libDest = path.join(launcherDir, 'lib');
 
-        console.log('Copy Ubuntu launcher scripts to ' + launcherDir);        
-        gulp.src('assets/linux/**')                   
+        console.log('Copy Ubuntu launcher scripts to ' + launcherDir);
+        gulp.src('assets/linux/**')
             .pipe(gulp.dest(launcherDir))
             .on('end', function() {
 
@@ -362,7 +362,7 @@ function start_debug(done) {
 
     var platforms = getPlatforms();
 
-    var exec = require('child_process').exec;    
+    var exec = require('child_process').exec;
     if (platforms.length === 1) {
         var run = getRunDebugAppCommand(platforms[0]);
         console.log('Starting debug app (' + run + ')...');
@@ -410,7 +410,7 @@ function release_zip(arch, appDirectory) {
     const output = getReleaseFilename(arch, 'zip', true);
     const base = path.join(appDirectory, pkg.name, arch);
 
-    return compressFiles(src, base, output, 'EmuFlight Blackbox Explorer');
+    return compressFiles(src, base, output, 'Betaflight Blackbox Explorer');
 }
 
 // Compress files from srcPath, using basePath, to outputFile in the RELEASE_DIR

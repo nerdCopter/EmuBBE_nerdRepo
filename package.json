@@ -55,5 +55,12 @@
   },
   "engines": {
     "node": "16.x"
+  },
+  "config": {
+    "platformDependentModules": {
+      "darwin": [
+        "appdmg@^0.6.2"
+      ]
+    }
   }
 }
