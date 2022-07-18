@@ -353,6 +353,7 @@ var FlightLogParser = function(logData) {
             vbat_pid_compensation:null,             // VBAT PID compensation
             rate_limits:[null, null, null],         // RC Rate limits
             rc_smoothing:null,                      // RC Control Smoothing
+            rc_smoothing_type:null,                 // Type of the RC Smoothin
             rc_interpolation:null,                  // RC Control Interpolation type
             rc_interpolation_channels:null,         // RC Control Interpotlation channels
             rc_interpolation_interval:null,         // RC Control Interpolation Interval
@@ -365,6 +366,13 @@ var FlightLogParser = function(logData) {
             rc_smoothing_filter_type:[null,null],   // RC Smoothing input and derivative type
             rc_smoothing_rx_average:null,           // RC Smoothing rx average readed in ms
             rc_smoothing_debug_axis:null,           // Axis recorded in the debug mode of rc_smoothing
+            rc_smoothing_mode:null,                 // ** 4.3** RC on or off (0 or 1)
+            rc_smoothing_feedforward_hz:null,       // RC Smoothing manual cutoff for feedforward
+            rc_smoothing_setpoint_hz:null,          // RC Smoothing manual cutoff for setpoint
+            rc_smoothing_auto_factor_setpoint:null, // RC Smoothing auto factor for roll, pitch and yaw setpoint
+            rc_smoothing_throttle_hz:null,          // RC Smoothing manual cutoff for throttle
+            rc_smoothing_auto_factor_throttle:null, // RC Smoothing cutoff for throttle
+            rc_smoothing_active_cutoffs_ff_sp_thr:[null,null,null],// RC Smoothing active cutoffs feedforward, setpoint, throttle
             dterm_filter_type:null,                 // D term filtering type (PT1, BIQUAD, PT2, PT3)
             dterm_filter2_type:null,                // D term 2 filtering type (PT1, BIQUAD, PT2, PT3)
             pidAtMinThrottle:null,                  // Stabilisation at zero throttle
@@ -409,13 +417,7 @@ var FlightLogParser = function(logData) {
             ff_jitter_factor: null,
             ff_boost: null,
             ff_max_rate_limit: null,
-            rc_smoothing_mode:null,                 // ** 4.3** RC on or off (0 or 1)
-            rc_smoothing_feedforward_hz:null,       // RC Smoothing manual cutoff for feedforward
-            rc_smoothing_setpoint_hz:null,          // RC Smoothing manual cutoff for setpoint
-            rc_smoothing_auto_factor_setpoint:null, // RC Smoothing auto factor for roll, pitch and yaw setpoint
-            rc_smoothing_throttle_hz:null,          // RC Smoothing manual cutoff for throttle
-            rc_smoothing_auto_factor_throttle:null, // RC Smoothing cutoff for throttle
-            rc_smoothing_active_cutoffs_ff_sp_thr:[null,null,null],// RC Smoothing active cutoffs feedforward, setpoint, throttle
+
             dyn_notch_count: null,                  // Number of dynamic notches 4.3
             rpm_filter_fade_range_hz: null,         // Fade range for RPM notch filters in Hz
             dyn_idle_p_gain: null,
@@ -501,7 +503,7 @@ var FlightLogParser = function(logData) {
             rc_smoothing_feedforward_cutoff : "rc_smoothing_feedforward_hz",
             rc_smoothing_setpoint_cutoff : "rc_smoothing_setpoint_hz",
             rc_smoothing_throttle_cutoff : "rc_smoothing_throttle_hz",
-            rc_smoothing_type         : "rc_smoothing_mode",
+            rc_smoothing_type         : "rc_smoothing_mode",   //breaks EmuF
             rc_yaw_expo               : "rcYawExpo",
             rcExpo                    : "rc_expo",
             rcRate                    : "rc_rates",
@@ -818,6 +820,7 @@ var FlightLogParser = function(logData) {
             case "gyro_cal_on_first_arm":
             case "vbat_pid_compensation":
             case "rc_smoothing":
+            case "rc_smoothing_auto_factor":
             case "rc_smoothing_type":
             case "rc_smoothing_debug_axis":
             case "rc_smoothing_rx_average":
@@ -1053,13 +1056,12 @@ var FlightLogParser = function(logData) {
             case "motorOutput":
             case "rate_limits":
             case "rc_smoothing_active_cutoffs":
-            case "rc_smoothing_active_cutoffs_ff_sp_thr":
-            case "rc_smoothing_active_cutoffs":
             case "rc_smoothing_active_cutoff":
             case "rc_smoothing_cutoffs":
             case "rc_smoothing_cutoff":
             case "rc_smoothing_filter_type":
             case "rc_smoothing_filter":
+            case "rc_smoothing_active_cutoffs_ff_sp_thr":
             case "gyro_lowpass_dyn_hz":
             case "dterm_lpf_dyn_hz":
                 that.sysConfig[fieldName] = parseCommaSeparatedString(fieldValue);

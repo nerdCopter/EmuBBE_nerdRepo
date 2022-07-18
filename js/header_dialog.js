@@ -969,7 +969,7 @@ function HeaderDialog(dialog, onSave) {
             setParameter('rcSmoothingActiveCutoffsThr'  ,"0", 0);
        }
 
-        renderSelect('rc_smoothing_type'          ,sysConfig.rc_smoothing_type, RC_SMOOTHING_TYPE);
+        renderSelect('rc_smoothing_mode'          ,sysConfig.rc_smoothing_mode, RC_SMOOTHING_TYPE);
         renderSelect('rc_interpolation'           ,sysConfig.rc_interpolation, RC_INTERPOLATION);
         setParameter('rc_interpolation_interval'  ,sysConfig.rc_interpolation_interval,0);
         setParameter('rc_smoothing_cutoff'        ,sysConfig.rc_smoothing_cutoff, 0);
@@ -985,7 +985,7 @@ function HeaderDialog(dialog, onSave) {
         setParameter('rc_smoothing_active_cutoffs_2',sysConfig.rc_smoothing_active_cutoffs[1], 0);
         setParameter('rc_interpolation_channels'  ,sysConfig.rc_interpolation_channels, 0);
 
-        if (sysConfig.rc_smoothing_type === RC_SMOOTHING_TYPE.indexOf('FILTER')) {
+        if (sysConfig.rc_smoothing_mode === RC_SMOOTHING_TYPE.indexOf('FILTER')) {
             $('.parameter td[name="rc_interpolation"]').css('display', 'none');
             $('.parameter td[name="rc_interpolation_interval"]').css('display', 'none');
         } else {
