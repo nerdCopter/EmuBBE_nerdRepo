@@ -1,6 +1,5 @@
 body {
     padding-bottom:2em;
-    background-color: #2e2e2e;
 }
 
 html, body {
@@ -29,15 +28,13 @@ a.disabled {
 @media (max-width: 1140px) {
     .navbar-header {
         float: none;
-        background-color: #2e2e2e;
     }
     .navbar-toggle {
         display: block;
-        background-color: #2e2e2e;
     }
     .navbar-collapse {
         border-top: 1px solid transparent;
-        background-color: #2e2e2e;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
     }
     .navbar-collapse.collapse {
         display: none!important;
@@ -64,10 +61,6 @@ a.disabled {
     .collapsing {
         overflow: hidden!important;
     }
-}
-
-.container-fluid>.navbar-collapse, .container-fluid>.navbar-header, .container>.navbar-collapse, .container>.navbar-header {
-    background-color: #2e2e2e;
 }
 
 @media (min-width: 768px) {
@@ -299,12 +292,8 @@ html:not(.has-log):not(.has-video) .header-pane {
 }
 .log-info .form-group {
     margin-bottom:10px;
-    color: rgb(228, 228, 228);
 }
 
-.form-group {
-    color: rgb(228, 228, 228);
-}
 /* Bootstrap-styled file inputs by abeautifulsite http://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3/ */
 .btn-file {
     position: relative;
@@ -439,29 +428,6 @@ html.has-log .log-graph-config {
     height: 30px;
 }
 
-.form-control {
-    color: rgb(228, 228, 228);
-    background-color: #000;
-    background-image: none;
-    border: 1px solid #5f5f5f;
-}
-
-.dropdown-menu>li>a {
-    color: rgb(228, 228, 228);
-    background-color: #3c3c3c;
-}
-
-.open>.dropdown-menu {
-    background-color: #3c3c3c;
-}
-
-button.close {
-    color: white;
-}
-
-.close:focus, .close:hover {
-    color:white;
-}
 .config-graph-field-header {
     margin-bottom: 0;
     font-size: 12px;
@@ -676,18 +642,13 @@ html.has-analyser-fullscreen.has-analyser .analyser input:not(.onlyFullScreenExc
 
 .log-field-values table,
 .log-field-values h4 {
-    background-color: #333333;
-    color: rgb(228, 228, 228);
+    background-color: #FFFFFF;
     overflow-y: auto;
     height: 20px;
 }
 
 .log-field-values tr:nth-child(even) {
-    background-color: #484747;
-    color: rgb(228, 228, 228);
-}
-.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    border-top: 1px solid #505050;
+    background-color: #EBF3F7;
 }
 
 html.has-table-overlay .log-field-values {
@@ -698,8 +659,8 @@ html.has-table-overlay .log-field-values {
     display:block;
     padding: 9px;
     font-size: small;
-    background-color: #333333;
-    border: #333333;
+    background-color: white;
+    border: black;
     /*z-index: 10;*/
     bottom: 80px;
     overflow-y: auto;
@@ -752,7 +713,7 @@ html.has-config .configuration-list {
 }
 
 .graph-legend-field {
-    margin-bottom: 0.0em;
+    margin-bottom: 0.5em;
     cursor:pointer;
     padding-left:  0.7em;
     padding-right: 0.7em;
@@ -838,14 +799,6 @@ html:not(.video-hidden).isINAV .view-video {
      color: rgba(8, 80, 172,1.0);
 }
 
-html.has-analyser-sticks.isEMUF .view-analyser-sticks,
-html.has-analyser.isEMUF .view-analyser,
-html.has-table.isEMUF .view-table,
-html.has-sticks.isEMUF .view-sticks,
-html.has-craft.isEMUF .view-craft,
-html:not(.video-hidden).isEMUF .view-video {
-     color: rgb(4, 66, 147);
-}
 
 html:not(.has-analyser-fullscreen) .glyphicon-resize-small {
      display:none;
@@ -872,7 +825,7 @@ html:not(.has-analyser) .view-analyser-fullscreen {
 
 .video-top-controls h4 {
     font-size: 11px;
-    color: rgb(228, 228, 228);
+    color: #757575;
     margin-top: 7px;
     margin-bottom: 4px;
     font-weight: bold;
@@ -1017,7 +970,7 @@ html.has-log .video-top-controls {
 	top:50px;
 	position:fixed;
 	z-index:10;
-	background-color: #2e2e2e;
+	background-color:white;
 	width: 100%;
 	min-width: 1390px;
 	white-space: nowrap;
@@ -1034,7 +987,6 @@ html.has-log .video-top-controls {
     text-align: center;
     padding: 3px;
     width: fit-content;
-    color: black;
 }
 
 .noUi-handle:after,.noUi-handle:before {
@@ -1117,26 +1069,6 @@ progress {
 }
 .jumbotron {
     padding: 15px;
-    background-color: #3d3f3e;
-}
-
-.jumbotron p {
-    color: #dcdcdc;
-}
-
-.jumbotron .h1, .jumbotron h1 {
-    color: #dcdcdc;
-}
-
-.panel-default>.panel-heading {
-    background-image: linear-gradient(to bottom,#5d5d5d 0,#484747 100%);
-    color: #dcdcdc;
-}
-
-.panel-default {
-    border-color: #3e3e3e;
-    background-color:#3e3e3e ;
-    color: #dcdcdc;
 }
 
 .hiddenElement {
@@ -1147,7 +1079,6 @@ progress {
     padding-left: 30px;
     font-weight: bold;
     font-size: 1.5em;
-    color: #dcdcdc;
 }
 
 .navbar-inverse .navbar-brand {
@@ -1200,10 +1131,6 @@ html.isINAV .navbar-logo {
     left: 34px;
 }
 
-html.isEMUF .navbar-logo {
-    left: 34px;
-}
-
 html.isCF .navbar-logo img {
 	content: url(".././images/cf_logo_white.svg");
 	width: 160px;
@@ -1214,13 +1141,6 @@ html.isBF .navbar-logo img {
     width: 282px;
     height: 50px;
     margin-left: 0 !important;
-}
-
-html.isEMUF .navbar-logo img {
-	content: url(".././images/emuf_logo.png");
-	width: auto;
-    left: -16px;
-	top: 3px;
 }
 
 html.isINAV .navbar-logo img {
@@ -1257,14 +1177,6 @@ html.isINAV .navbar-logo img {
 html.isBF .navbar-logo span {
     left: -181px;
     top: 30px;
-}
-
-html.isEMUF .navbar-logo span {
-    left: -70px;
-    top: 30px;
-    font-size:85%;
-    color: #d3d3d3;
-    
 }
 
 html.has-video .navbar-static-top,
@@ -1485,12 +1397,6 @@ html.isINAV input[type="checkbox"].ios-switch:checked + div > div {
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(8, 80, 172,1);
 }
 
-/* Emuf Knob */
-input[type="checkbox"].blue.ios-switch:checked + div > div ,
-html.isEMUF input[type="checkbox"].ios-switch:checked + div > div {
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3), 0 0 0 1px rgb(4, 66, 147);
-}
-
 html.isBF .config-graph h4 span:first-child,
 html.isBF .log-graph-config h3 span {
     background-image: linear-gradient(to bottom,#fff8e9 0,#ffbb00 100%);
@@ -1504,11 +1410,6 @@ html.isCF .log-graph-config h3 span {
 html.isINAV .config-graph h4 span:first-child,
 html.isINAV .log-graph-config h3 span {
     background-image: linear-gradient(to bottom,#fff8e9 0,#0850ac 100%);
-}
-
-html.isEMUF .config-graph h4 span:first-child,
-html.isEMUF .log-graph-config h3 span {
-    background-image: linear-gradient(to bottom,#fff8e9 0,#074aa1 100%);
 }
 
 .config-graph h4 span,
@@ -1612,7 +1513,7 @@ div#lap-timer td:first-child {
     word-wrap: normal;
     z-index: 10;
     padding: 4px;
-    color: rgb(228, 228, 228);
+    color: white;
     background-color: #363636;
     border: 2px;
     border-radius: 3px;
@@ -1630,7 +1531,7 @@ div#lap-timer td:first-child {
 #changelog .wrapper {
     height: 100%;
     padding: 0 0;
-    border-left: 5px solid #2e6da4;
+    border-left: 5px solid #ffbb00;
     overflow: hidden;
     display: none;
 }
@@ -1640,7 +1541,7 @@ div#lap-timer td:first-child {
     top: 50px;
     right: 665px;
     position: absolute;
-    background: #2e6da4;
+    background: #ffbb00;
     border-radius: 5px 5px 0 0;
     border-bottom: none;
     height: 30px;
@@ -1666,7 +1567,6 @@ html.log_open #changelog {
 
 html.log_open #changelog .wrapper {
     display: block;
-    background-color: #2e2e2e;
 }
 
 /* changelog content */
@@ -1704,9 +1604,9 @@ dialog h3 {
     margin-top: 8px;
     margin-bottom: 8px;
     margin-right: 10px;
-    background-color: #2e6da4;
+    background-color: #ffbb00;
     border-radius: 3px;
-    border: 1px solid #2e6da4;
+    border: 1px solid #dba718;
     color: #000;
     font-family: 'open_sansbold', Arial;
     font-size: 12px;
@@ -1719,8 +1619,4 @@ dialog h3 {
     padding-left: 9px;
     padding-right: 9px;
     line-height: 28px;
-}
-
-dl {
-    background-color: #2e2e2e;
 }
