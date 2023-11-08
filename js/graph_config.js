@@ -196,13 +196,16 @@ GraphConfig.load = function(config) {
             sysConfig = flightLog.getSysConfig();
 
         var maxDegreesSecond = function(scale) {
+            console.log('rates_type: '+sysConfig["rates_type"]);
             switch(sysConfig["rates_type"]){
                 case RATES_TYPE.indexOf('ACTUAL'):
                 case RATES_TYPE.indexOf('QUICK'):
+                    console.log('rates_type was actual or quick');
                     return Math.max(sysConfig["rates"][0] * 10.0 * scale,
                                     sysConfig["rates"][1] * 10.0 * scale,
                                     sysConfig["rates"][2] * 10.0 * scale);
                 default:
+                    console.log('rates type was betaflight or kiss');
                     return Math.max(flightLog.rcCommandRawToDegreesPerSecond(500,0) * scale, 
                                     flightLog.rcCommandRawToDegreesPerSecond(500,1) * scale, 
                                     flightLog.rcCommandRawToDegreesPerSecond(500,2) * scale);
