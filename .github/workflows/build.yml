@@ -101,11 +101,28 @@ jobs:
         continue-on-error: false
 
       - name: Upload Artifacts
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
         uses: actions/upload-artifact@v4
         with:
-          name: EmuFlight-Blackbox-Explorer-${{ github.ACTOR }}-${{ github.RUN_NUMBER }}
-          path: release/*
-
+          name: EmuFlight-Blackbox-Explorer-${{ github.ACTOR }}-${{ github.RUN_NUMBER }}-Linux
+          path: |
+            release/*.rpm
+            release/*.deb
+            release/*.zip
+      - name: Upload Artifacts
+        if: ${{ startsWith(matrix.os, 'macos') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: EmuFlight-Blackbox-Explorer-${{ github.ACTOR }}-${{ github.RUN_NUMBER }}-OSX
+          path: release/*.dmg
+      - name: Upload Artifacts
+        if: ${{ startsWith(matrix.os, 'windows') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: EmuFlight-Blackbox-Explorer-${{ github.ACTOR }}-${{ github.RUN_NUMBER }}-Windows
+          path: |
+            release/*win*.exe
+            release/*win*.zip
 
   releases:
     if: startsWith(github.ref, 'refs/tags/')
@@ -130,7 +147,7 @@ jobs:
         continue-on-error: true
 
       - name: download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
         with:
           name: EmuFlight-Blackbox-Explorer-${{ github.ACTOR }}-${{ github.RUN_NUMBER }}
         continue-on-error: false
