@@ -23,13 +23,14 @@ jobs:
       fail-fast: false
       max-parallel: 3
       matrix:
-        os: [ubuntu-20.04, macos-11, windows-2022]
+        #https://github.com/actions/runner-images
+        os: [ubuntu-22.04, macos-11, windows-2022]
     outputs:
       buildtag: ${{ steps.ids.outputs.buildtag }}
       shortsha: ${{ steps.ids.outputs.shortsha }}
     steps:
       - name: git checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         continue-on-error: false
 
       - name: get tag & short-sha
@@ -46,9 +47,9 @@ jobs:
         continue-on-error: true
 
       - name: setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '16.16.0'
+          node-version: '12'
         continue-on-error: false
 
       # for debugging
@@ -76,7 +77,7 @@ jobs:
         if: ${{ startsWith(matrix.os, 'macos') }}
         run: |
           npm install appdmg@0.6.6 --python=python2.7
-        continue-on-error: true
+        continue-on-error: false
 
       - name: yarn gulp clean-release
         run: yarn gulp clean-release
