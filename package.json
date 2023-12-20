@@ -47,9 +47,6 @@
     "through2": "4.0.2",
     "yarn": "^1.22.0"
   },
-  "optionalDependencies": {
-    "appdmg": "^0.6.6"
-  },
   "resolutions": {
     "**/**/lodash.template": "^4.5.0"
   },
@@ -59,7 +56,7 @@
   "config": {
     "platformDependentModules": {
       "darwin": [
-        "appdmg@^0.6.2"
+        "appdmg@^0.6.6"
       ]
     }
   }
