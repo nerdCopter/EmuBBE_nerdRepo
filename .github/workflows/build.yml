@@ -66,6 +66,12 @@ jobs:
           echo "ShortSha: ${{ steps.ids.outputs.shortsha }}"
         continue-on-error: true
 
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          #required for appdmg failing
+
       # build stuff
       - name: yarn install
         run: |
