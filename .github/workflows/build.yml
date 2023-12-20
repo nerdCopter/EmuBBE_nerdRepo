@@ -67,10 +67,20 @@ jobs:
 
       # build stuff
       - name: yarn install
-        run: yarn install
+        run: |
+          npm config set fetch-retry-maxtimeout 600000 -g
+          yarn install --immutable --immutable-cache --check-cach
+
+      # this forces appdmg install even though package.json optionalDependencies has/needs it.
+      - name: setup macos
+        if: ${{ startsWith(matrix.os, 'macos') }}
+        run: |
+          npm install appdmg@0.6.6 --python=python2.7
+        continue-on-error: true
 
       - name: yarn gulp clean-release
         run: yarn gulp clean-release
+        continue-on-error: true
 
       - name: yarn gulp release --linux64
         if: ${{ startsWith(matrix.os, 'ubuntu') }}
@@ -91,7 +101,7 @@ jobs:
         continue-on-error: false
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: EmuFlight-Blackbox-Explorer-${{ github.ACTOR }}-${{ github.RUN_NUMBER }}
           path: release/*
@@ -120,7 +130,7 @@ jobs:
         continue-on-error: true
 
       - name: download artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: EmuFlight-Blackbox-Explorer-${{ github.ACTOR }}-${{ github.RUN_NUMBER }}
         continue-on-error: false
