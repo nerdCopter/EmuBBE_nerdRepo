@@ -515,6 +515,9 @@ function release_rpm(arch, appDirectory, done) {
 
 // Create distribution package for macOS platform
 function release_osx64(appDirectory) {
+    // remove gulp-appdmg from the package.json we're going to write
+    delete pkg.optionalDependencies['gulp-appdmg'];
+    
     const appdmg = require('./gulp-macdmg');
 
     // The appdmg does not generate the folder correctly, manually
