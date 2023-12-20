@@ -72,13 +72,6 @@ jobs:
           npm config set fetch-retry-maxtimeout 600000 -g
           yarn install --immutable --immutable-cache --check-cach
 
-      # this forces appdmg install even though package.json optionalDependencies has/needs it.
-      - name: setup macos
-        if: ${{ startsWith(matrix.os, 'macos') }}
-        run: |
-          npm install appdmg@0.6.6 --python=python2.7
-        continue-on-error: false
-
       - name: yarn gulp clean-release
         run: yarn gulp clean-release
         continue-on-error: true
@@ -88,6 +81,13 @@ jobs:
         run: |
           sudo apt install -y rpm
           yarn gulp release --linux64
+        continue-on-error: false
+
+      # this forces appdmg install even though package.json optionalDependencies has/needs it.
+      - name: setup macos
+        if: ${{ startsWith(matrix.os, 'macos') }}
+        run: |
+          npm install appdmg@0.6.6 --python=python2.7
         continue-on-error: false
 
       - name: yarn gulp release --osx64
