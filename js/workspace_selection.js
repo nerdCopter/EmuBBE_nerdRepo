@@ -12,16 +12,16 @@ function WorkspaceSelection(targetElem, workspaces, onSelectionChange, onSaveWor
 
     function buildUI() {
         
-        buttonElem = $('<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="workspace-menu"></button>');
+        buttonElem = $('<button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="workspace-menu"></button>');
         numberSpan = $('<span class="workspace-selector-index">');
         titleSpan = $('<span class="workspace-selector-title">');
         var caretElem = $('<span class="caret"></span>')
         
-        editButton = $('<span class="glyphicon glyphicon-pencil workspace-selector-editButton" aria-hidden="true" data-toggle="tooltip" title="Edit Workspace Name"></span>');
+        editButton = $('<span class="glyphicon glyphicon-pencil workspace-selector-editButton" aria-hidden="true" data-bs-toggle="tooltip" title="Edit Workspace Name"></span>');
         editButton.click(editTitle);
-        editButton.tooltip({ trigger: "hover", placement: "auto bottom" });
+        new bootstrap.Tooltip(editButton[0], { trigger: "hover", placement: "bottom" });
         
-        menuElem = $('<ul class="dropdown-menu pull-right" role="menu" aria-labelledby="workspace-menu"></ul>');
+        menuElem = $('<ul class="dropdown-menu float-end" role="menu" aria-labelledby="workspace-menu"></ul>');
 
         targetElem.empty();
         targetElem.addClass("dropdown")
@@ -31,12 +31,12 @@ function WorkspaceSelection(targetElem, workspaces, onSelectionChange, onSaveWor
         buttonElem.append(titleSpan);
         buttonElem.append(editButton);
         buttonElem.append(caretElem);
-
-        buttonElem.dropdown(); // initialise dropdown
+        // Bootstrap 5 auto-wires [data-bs-toggle="dropdown"] via its own delegated click
+        // listener, so no explicit dropdown init call is needed here.
     }
 
     function editTitle(e) {
-        buttonElem.dropdown("toggle"); // Hack to undrop
+        bootstrap.Dropdown.getOrCreateInstance(buttonElem[0]).toggle(); // Hack to undrop
         editButton.hide();
         var inputElem = $('<input type="text" onkeyup="event.preventDefault()">');
         inputElem.click((e) => e.stopPropagation()); // Stop click from closing
@@ -60,7 +60,7 @@ function WorkspaceSelection(targetElem, workspaces, onSelectionChange, onSaveWor
             let element = workspaces[id % 10];
 
             var item = $('<li></li>');
-            var link = $('<a href="#"></a>')
+            var link = $('<a href="#" class="dropdown-item"></a>')
 
             if (!element) {
                 // item.addClass("disabled");
@@ -79,15 +79,15 @@ function WorkspaceSelection(targetElem, workspaces, onSelectionChange, onSaveWor
 
             link.click((e) => {
                 if (element) {
-                    buttonElem.dropdown("toggle");
+                    bootstrap.Dropdown.getOrCreateInstance(buttonElem[0]).toggle();
                     onSelectionChange(workspaces, id);
                     e.preventDefault();
                 }
             });
 
-            var actionButtons = $('<span class="pull-right"></span>');
+            var actionButtons = $('<span class="float-end"></span>');
 
-            var saveButton = $('<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" data-toggle="tooltip" title="Save current graph setup to this Workspace"></span>');
+            var saveButton = $('<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" data-bs-toggle="tooltip" title="Save current graph setup to this Workspace"></span>');
             saveButton.click((e) => {
                 if (!element) {
                     onSaveWorkspace(id, "Unnamed");
@@ -98,7 +98,7 @@ function WorkspaceSelection(targetElem, workspaces, onSelectionChange, onSaveWor
                 e.preventDefault();
             });
 
-            saveButton.tooltip({ trigger: "hover", placement: "auto bottom" });
+            new bootstrap.Tooltip(saveButton[0], { trigger: "hover", placement: "bottom" });
 
             item.append(link);
             link.append(number);

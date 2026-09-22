@@ -1,0 +1,45 @@
+/* Glyphicons Halflings, vendored from Bootstrap 3 (dropped in Bootstrap 5).
+   Only the icon codepoints actually used in this app are kept. */
+@font-face {
+  font-family: "Glyphicons Halflings";
+  src: url("fonts/glyphicons-halflings-regular.woff2") format("woff2");
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: "Glyphicons Halflings";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.glyphicon-cog:before { content: "\e019"; }
+.glyphicon-equalizer:before { content: "\e210"; }
+.glyphicon-fast-backward:before { content: "\e070"; }
+.glyphicon-fast-forward:before { content: "\e076"; }
+.glyphicon-film:before { content: "\e009"; }
+.glyphicon-floppy-disk:before { content: "\e172"; }
+.glyphicon-home:before { content: "\e021"; }
+.glyphicon-info-sign:before { content: "\e086"; }
+.glyphicon-list-alt:before { content: "\e032"; }
+.glyphicon-minus:before { content: "\2212"; }
+.glyphicon-object-align-left:before { content: "\e247"; }
+.glyphicon-object-align-vertical:before { content: "\e248"; }
+.glyphicon-pause:before { content: "\e073"; }
+.glyphicon-pawn:before { content: "\e213"; }
+.glyphicon-pencil:before { content: "\270f"; }
+.glyphicon-plane:before { content: "\e108"; }
+.glyphicon-play:before { content: "\e072"; }
+.glyphicon-plus:before { content: "\002b"; }
+.glyphicon-question-sign:before { content: "\e085"; }
+.glyphicon-remove:before { content: "\e014"; }
+.glyphicon-resize-full:before { content: "\e096"; }
+.glyphicon-resize-small:before { content: "\e097"; }
+.glyphicon-screenshot:before { content: "\e087"; }
+.glyphicon-step-backward:before { content: "\e069"; }
+.glyphicon-step-forward:before { content: "\e077"; }
+.glyphicon-trash:before { content: "\e020"; }
+.glyphicon-zoom-in:before { content: "\e015"; }
+.glyphicon-zoom-out:before { content: "\e016"; }

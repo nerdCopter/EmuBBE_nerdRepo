@@ -142,7 +142,7 @@ function VideoExportDialog(dialog, onSave) {
         
         $(".jumpy-video-note").toggle(!!logParameters.flightVideo);
         
-        dialog.modal('show');
+        bootstrap.Modal.getOrCreateInstance(dialog[0]).show();
         
         this.flightLog = flightLog;
         this.logParameters = logParameters;
@@ -205,7 +205,7 @@ function VideoExportDialog(dialog, onSave) {
                     $(".video-export-result").text("Rendered " + frameCount + " frames in " + formatTime(Math.round((Date.now() - renderStartTime) / 1000)));
                     setDialogMode(DIALOG_MODE_COMPLETE);
                 } else {
-                    dialog.modal('hide');
+                    bootstrap.Modal.getOrCreateInstance(dialog[0]).hide();
                 }
                 // Free up any memory still held by the video renderer
                 if (videoRenderer) {
@@ -235,8 +235,7 @@ function VideoExportDialog(dialog, onSave) {
         }
     });
     
-    dialog.modal({
-        show: false,
+    new bootstrap.Modal(dialog[0], {
         backdrop: "static" // Don't allow a click on the backdrop to close the dialog
     });
 }

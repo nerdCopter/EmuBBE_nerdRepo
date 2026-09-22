@@ -8,7 +8,7 @@ function KeysDialog(dialog) {
 	// Public variables
     
     this.show = function(sysConfig) { 
-            dialog.modal('show');
+            bootstrap.Modal.getOrCreateInstance(dialog[0]).show();
     }
  
  	// Buttons

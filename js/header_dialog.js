@@ -1299,7 +1299,7 @@ function HeaderDialog(dialog, onSave) {
             $('#dlgHeaderDialog select').prop('disabled', 'disabled');
         });
 
-        dialog.modal('toggle');
+        bootstrap.Modal.getOrCreateInstance(dialog[0]).toggle();
 
     }
 

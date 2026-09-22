@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/glyphicons.css">
     <link rel="stylesheet" href="css/jquery.nouislider.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/header_dialog.css">
@@ -35,7 +35,7 @@
             <div class="jumbotron">
                 <h1>Welcome to the Enhanced Blackbox Explorer!</h1>
                 <p>This tool allows you to view and analyze logs created by Cleanflight's, Betaflight's and EmuFlight's Blackbox feature.</p>
-                <span class="btn btn-primary btn-lg btn-file" data-toggle="tooltip" title="Start by opening a log or video file"> Open log file/video
+                <span class="btn btn-primary btn-lg btn-file" data-bs-toggle="tooltip" title="Start by opening a log or video file"> Open log file/video
                 </span>
                 <span id="loading-file-text" class="hiddenElement loading-message"></span>
             </div>
@@ -43,11 +43,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card">
+                        <div class="card-header">
                             Introduction to Blackbox
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <p>
                                 The Blackbox feature is built in to
                                 <a href="https://github.com/cleanflight/cleanflight" target="_blank" rel="noopener noreferrer">Cleanflight</a>,
@@ -72,11 +72,11 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card">
+                        <div class="card-header">
                             Tuning your craft
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <p>
                                 The Blackbox can deliver insights on your flight performance that will allow you to tune variables such as your PIDs and
                                 low-pass filter settings.
@@ -111,11 +111,11 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card">
+                        <div class="card-header">
                             Other tools
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <p>
                                 If you want to analyze your logs with your own mathematics package (such as Matlab) you can use the separate
                                 <a href="https://github.com/betaflight/blackbox-tools/" target="_blank" rel="noopener noreferrer">blackbox_decode tool</a>
@@ -131,11 +131,11 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card">
+                        <div class="card-header">
                             Version
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             <p>
                                 <div id="viewer-version">
                                     <!-- current version shown here -->
@@ -143,7 +143,7 @@
                             </p>
                             <p class="viewer-download">
                                 The latest official version is
-                                <a class="btn btn-default btn-md btn-viewer-download" data-toggle="tooltip" title="Goto the latest version download page"
+                                <a class="btn btn-secondary btn-md btn-viewer-download" data-bs-toggle="tooltip" title="Goto the latest version download page"
                                     href="https://github.com/emuflight/EmuFlight-Blackbox-Explorer/releases/latest" target="_blank" rel="noopener noreferrer">
                                     vX.X.XX </a>
                             </p>
@@ -163,15 +163,13 @@
         </div>
     </div>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark navbar-static-top" role="navigation">
         <div class="container header-pane">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false"
                     aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <span class="visually-hidden">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-logo">
                     <div>
@@ -182,30 +180,30 @@
                 </div>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                <div class="navbar-form navbar-right" role="form">
+                <div class="ms-auto d-flex flex-wrap gap-2" role="form">
                     <div class="btn-group">
-                        <a class="btn btn-default btn-new-window" data-toggle="tooltip" title="Open a new Blackbox Log Viewer window"> New Window </a>
-                        <a class="btn btn-primary btn-video-export" data-toggle="tooltip" title="Export your video and chart setup to file"> Export video...</a>
-                        <a class="btn btn-primary btn-workspaces-export" data-toggle="tooltip" title="Export your workspace configurations to file">
+                        <a class="btn btn-secondary btn-new-window" data-bs-toggle="tooltip" title="Open a new Blackbox Log Viewer window"> New Window </a>
+                        <a class="btn btn-primary btn-video-export" data-bs-toggle="tooltip" title="Export your video and chart setup to file"> Export video...</a>
+                        <a class="btn btn-primary btn-workspaces-export" data-bs-toggle="tooltip" title="Export your workspace configurations to file">
                             Export Workspaces...</a>
-                        <a class="btn btn-primary btn-csv-export" data-toggle="tooltip" title="Export your current graphs to CSV file"> Export CSV...</a>
-                        <span class="btn btn-primary btn-file" data-toggle="tooltip" title="Open another log file, video file, exported workspace file or configuration dump file">
+                        <a class="btn btn-primary btn-csv-export" data-bs-toggle="tooltip" title="Export your current graphs to CSV file"> Export CSV...</a>
+                        <span class="btn btn-primary btn-file" data-bs-toggle="tooltip" title="Open another log file, video file, exported workspace file or configuration dump file">
                             Open log file/video
                         </span>
                     </div>
                     <div class="btn-group"  style="display: none;">
-                        <button type="button" class="btn btn-default view-zoom-in" data-toggle="tooltip" title="Zoom In Window">
+                        <button type="button" class="btn btn-secondary view-zoom-in" data-bs-toggle="tooltip" title="Zoom In Window">
                             <span class="glyphicon glyphicon-zoom-in"></span>
                         </button>
-                        <button type="button" class="btn btn-default view-zoom-out" data-toggle="tooltip" title="Zoom Out Window">
+                        <button type="button" class="btn btn-secondary view-zoom-out" data-bs-toggle="tooltip" title="Zoom Out Window">
                             <span class="glyphicon glyphicon-zoom-out"></span>
                         </button>
                     </div>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-nobg open-user-settings-dialog" data-toggle="tooltip" title="Show Settings">
+                        <button type="button" class="btn btn-nobg open-user-settings-dialog" data-bs-toggle="tooltip" title="Show Settings">
                             <span class="glyphicon glyphicon-cog"></span>
                         </button>
-                        <button type="button" class="btn btn-nobg open-keys-dialog" data-toggle="tooltip" title="Show Shortcuts">
+                        <button type="button" class="btn btn-nobg open-keys-dialog" data-bs-toggle="tooltip" title="Show Shortcuts">
                             <span class="glyphicon glyphicon-question-sign"></span>
                         </button>
                     </div>
@@ -219,56 +217,56 @@
             <li class="log-view-panel">
                 <h4>View</h4>
                 <div class="dropdown view-buttons">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="view-menu">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="view-menu">
                         View
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="view-menu">
                         <li>
-                            <a href="#" class="open-header-dialog auto-hide-menu" data-toggle="tooltip" title="View/hide header">
+                            <a href="#" class="dropdown-item open-header-dialog auto-hide-menu" data-bs-toggle="tooltip" title="View/hide header">
                                 <span class="glyphicon glyphicon-info-sign"></span> Header
-                                <span class="pull-right">H</span>
+                                <span class="float-end">H</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="view-table auto-hide-menu" data-toggle="tooltip" title="View/hide statistics display">
+                            <a href="#" class="dropdown-item view-table auto-hide-menu" data-bs-toggle="tooltip" title="View/hide statistics display">
                                 <span class="glyphicon glyphicon-list-alt"></span> Values Table
-                                <span class="pull-right">T</span>
+                                <span class="float-end">T</span>
                             </a>
                         </li>
-                        <li class="divider"></li>
+                        <li><hr class="dropdown-divider"></li>
                         <li class="dropdown-header">Overlay</li>
                         <li>
-                            <a href="#" id="auto-hide-menu" class="view-video auto-hide-menu" data-toggle="tooltip" title="View/hide video display">
+                            <a href="#" id="auto-hide-menu" class="dropdown-item view-video auto-hide-menu" data-bs-toggle="tooltip" title="View/hide video display">
                                 <span class="glyphicon glyphicon-film"></span> Video
                             </a>
                         </li>
                         <li>
-                            <a href="#" id="auto-hide-menu" class="view-craft auto-hide-menu" data-toggle="tooltip" title="View/hide craft display">
+                            <a href="#" id="auto-hide-menu" class="dropdown-item view-craft auto-hide-menu" data-bs-toggle="tooltip" title="View/hide craft display">
                                 <span class="glyphicon glyphicon-plane"></span> Craft
                             </a>
                         </li>
                         <li>
-                            <a href="#" id="auto-hide-menu" class="view-sticks auto-hide-menu" data-toggle="tooltip" title="View/hide stick display">
+                            <a href="#" id="auto-hide-menu" class="dropdown-item view-sticks auto-hide-menu" data-bs-toggle="tooltip" title="View/hide stick display">
                                 <span class="glyphicon glyphicon-pawn"></span> Sticks
                             </a>
                         </li>
                         <li>
-                            <a href="#" id="auto-hide-menu" class="view-analyser auto-hide-menu" data-toggle="tooltip" title="View/hide analyser display">
+                            <a href="#" id="auto-hide-menu" class="dropdown-item view-analyser auto-hide-menu" data-bs-toggle="tooltip" title="View/hide analyser display">
                                 <span class="glyphicon glyphicon-equalizer"></span> Analyser
-                                <span class="pull-right">A</span>
+                                <span class="float-end">A</span>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div class="btn-group view-buttons-expanded" role="group">
-                    <button type="button" class="btn btn-default view-config" data-toggle="tooltip" title="View graph">
+                    <button type="button" class="btn btn-secondary view-config" data-bs-toggle="tooltip" title="View graph">
                         <span class="glyphicon glyphicon-home"></span>
                     </button>
-                    <button type="button" class="btn btn-default open-header-dialog" data-toggle="tooltip" title="View log header">
+                    <button type="button" class="btn btn-secondary open-header-dialog" data-bs-toggle="tooltip" title="View log header">
                         <span class="glyphicon glyphicon-info-sign"></span>
                     </button>
-                    <button type="button" class="btn btn-default view-table" data-toggle="tooltip" title="View table">
+                    <button type="button" class="btn btn-secondary view-table" data-bs-toggle="tooltip" title="View table">
                         <span class="glyphicon glyphicon-list-alt"></span>
                     </button>
                 </div>
@@ -277,19 +275,19 @@
                 <h4>Overlay</h4>
                 <div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default view-video" data-toggle="tooltip" title="View/hide video display">
+                        <button type="button" class="btn btn-secondary view-video" data-bs-toggle="tooltip" title="View/hide video display">
                             <span class="glyphicon glyphicon-film"></span>
                         </button>
-                        <button type="button" class="btn btn-default view-craft" data-toggle="tooltip" title="View/hide craft display">
+                        <button type="button" class="btn btn-secondary view-craft" data-bs-toggle="tooltip" title="View/hide craft display">
                             <span class="glyphicon glyphicon-plane"></span>
                         </button>
-                        <button type="button" class="btn btn-default view-sticks" data-toggle="tooltip" title="View/hide stick display">
+                        <button type="button" class="btn btn-secondary view-sticks" data-bs-toggle="tooltip" title="View/hide stick display">
                             <span class="glyphicon glyphicon-pawn"></span>
                         </button>
-                        <button type="button" class="btn btn-default view-analyser-sticks" style="display:none" data-toggle="tooltip" title="View/hide stick analyser">
+                        <button type="button" class="btn btn-secondary view-analyser-sticks" style="display:none" data-bs-toggle="tooltip" title="View/hide stick analyser">
                             <span class="glyphicon glyphicon-screenshot"></span>
                         </button>
-                        <button type="button" class="btn btn-default view-analyser" data-toggle="tooltip" title="View/hide analyser display">
+                        <button type="button" class="btn btn-secondary view-analyser" data-bs-toggle="tooltip" title="View/hide analyser display">
                             <span class="glyphicon glyphicon-equalizer"></span>
                         </button>
                     </div>
@@ -299,26 +297,26 @@
                 <h4>Playback</h4>
                 <div>
                     <div class="btn-group" role="group">
-                        <button type="button" class="btn btn-default video-jump-start" data-toggle="tooltip" title="Jump to start of video">
+                        <button type="button" class="btn btn-secondary video-jump-start" data-bs-toggle="tooltip" title="Jump to start of video">
                             <span class="glyphicon glyphicon-fast-backward"></span>
                             <span class="glyphicon-text-alike">VID</span>
                         </button>
-                        <button type="button" class="btn btn-default log-jump-start" data-toggle="tooltip" title="Jump to start of log">
+                        <button type="button" class="btn btn-secondary log-jump-start" data-bs-toggle="tooltip" title="Jump to start of log">
                             <span class="glyphicon glyphicon-fast-backward"></span>
                         </button>
-                        <button type="button" class="btn btn-default log-jump-back" data-toggle="tooltip" title="Jump back">
+                        <button type="button" class="btn btn-secondary log-jump-back" data-bs-toggle="tooltip" title="Jump back">
                             <span class="glyphicon glyphicon-step-backward"></span>
                         </button>
-                        <button type="button" class="btn btn-default log-play-pause" data-toggle="tooltip" title="Play/Pause log/video">
+                        <button type="button" class="btn btn-secondary log-play-pause" data-bs-toggle="tooltip" title="Play/Pause log/video">
                             <span class="glyphicon glyphicon-play"></span>
                         </button>
-                        <button type="button" class="btn btn-default log-jump-forward" data-toggle="tooltip" title="Jump forward">
+                        <button type="button" class="btn btn-secondary log-jump-forward" data-bs-toggle="tooltip" title="Jump forward">
                             <span class="glyphicon glyphicon-step-forward"></span>
                         </button>
-                        <button type="button" class="btn btn-default log-jump-end" data-toggle="tooltip" title="Jump to end of log">
+                        <button type="button" class="btn btn-secondary log-jump-end" data-bs-toggle="tooltip" title="Jump to end of log">
                             <span class="glyphicon glyphicon-fast-forward"></span>
                         </button>
-                        <button type="button" class="btn btn-default video-jump-end" data-toggle="tooltip" title="Jump to end of video">
+                        <button type="button" class="btn btn-secondary video-jump-end" data-bs-toggle="tooltip" title="Jump to end of video">
                             <span class="glyphicon-text-alike">VID</span>
                             <span class="glyphicon glyphicon-fast-forward"></span>
                         </button>
@@ -331,14 +329,14 @@
                     <div class="form-group">
                         <div class="btn-group playback-rate">
                             <div class="dropdown">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="playback-rate">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="playback-rate">
                                     Speed
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="playback-rate">
+                                <ul class="dropdown-menu float-end" role="menu" aria-labelledby="playback-rate">
                                     <li>
-                                        <div class="pull-right">
-                                            <div class="panel-body">
+                                        <div class="float-end">
+                                            <div class="card-body">
                                                 <div class="playback-rate-control btn-group btn-group-vertical"></div>
                                             </div>
                                         </div>
@@ -347,7 +345,7 @@
                             </div>
                         </div>
                         <div class="playback-rate-expanded">
-                            <div class="playback-rate-control btn-group btn-group-vertical" data-toggle="tooltip" title="Directly set the playback speed"></div>
+                            <div class="playback-rate-control btn-group btn-group-vertical" data-bs-toggle="tooltip" title="Directly set the playback speed"></div>
                         </div>
                     </div>
                 </div>
@@ -358,14 +356,14 @@
                     <div class="form-group">
                         <div class="btn-group zoom-menu">
                             <div class="dropdown">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="zoom-menu">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="zoom-menu">
                                     Zoom
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="zoom-menu">
+                                <ul class="dropdown-menu float-end" role="menu" aria-labelledby="zoom-menu">
                                     <li>
-                                        <div class="pull-right">
-                                            <div class="panel-body">
+                                        <div class="float-end">
+                                            <div class="card-body">
                                                 <div class="graph-zoom-control btn-group btn-group-vertical"></div>
                                             </div>
                                         </div>
@@ -374,7 +372,7 @@
                             </div>
                         </div>
                         <div class="graph-zoom-expanded">
-                            <div class="graph-zoom-control btn-group btn-group-vertical" data-toggle="tooltip" title="Directly set the zoom level"></div>
+                            <div class="graph-zoom-control btn-group btn-group-vertical" data-bs-toggle="tooltip" title="Directly set the zoom level"></div>
                         </div>
                     </div>
                 </div>
@@ -383,7 +381,7 @@
                 <h4>Time</h4>
                 <div class="form-inline">
                     <div class="form-group">
-                        <input type="text" class="form-control graph-time" value="1.0" size="8" data-toggle="tooltip" title="Enter a time to jump to">
+                        <input type="text" class="form-control graph-time" value="1.0" size="8" data-bs-toggle="tooltip" title="Enter a time to jump to">
                     </div>
                 </div>
             </li>
@@ -393,34 +391,34 @@
                     <div class="form-group">
                         <div class="btn-group sync-menu">
                             <div class="dropdown">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="sync-menu">
+                                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" id="sync-menu">
                                     Sync
                                     <span class="caret"></span>
                                 </button>
-                                <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="sync-menu">
+                                <ul class="dropdown-menu float-end" role="menu" aria-labelledby="sync-menu">
                                     <li>
-                                        <div class="pull-right">
-                                            <div class="panel-body">
+                                        <div class="float-end">
+                                            <div class="card-body">
                                                 Sync
-                                                <button type="button" class="btn btn-default log-sync-back" data-toggle="tooltip" title="Move log earlier">
+                                                <button type="button" class="btn btn-secondary log-sync-back" data-bs-toggle="tooltip" title="Move log earlier">
                                                     <span class="glyphicon glyphicon-step-backward"></span>
                                                 </button>
-                                                <input type="text" class="form-control video-offset" value="+0.0" size="7" data-toggle="tooltip" title="Enter a time offset">
-                                                <button type="button" class="btn btn-default log-sync-forward" data-toggle="tooltip" title="Move log later">
+                                                <input type="text" class="form-control video-offset" value="+0.0" size="7" data-bs-toggle="tooltip" title="Enter a time offset">
+                                                <button type="button" class="btn btn-secondary log-sync-forward" data-bs-toggle="tooltip" title="Move log later">
                                                     <span class="glyphicon glyphicon-step-forward"></span>
                                                 </button>
                                             </div>
                                         </div>
                                     </li>
                                     <li>
-                                        <a href="#" class="log-sync-here auto-hide-menu" data-toggle="tooltip" title="Set the log start to this video frame">
+                                        <a href="#" class="dropdown-item log-sync-here auto-hide-menu" data-bs-toggle="tooltip" title="Set the log start to this video frame">
                                             <span class="glyphicon glyphicon-object-align-left"></span> Start Log Here
                                         </a>
                                     </li>
                                     <li class="has-marker">
-                                        <a href="#" class="log-smart-sync auto-hide-menu" data-toggle="tooltip" title="Set the marked position to here...">
+                                        <a href="#" class="dropdown-item log-smart-sync auto-hide-menu" data-bs-toggle="tooltip" title="Set the marked position to here...">
                                             <span class="glyphicon glyphicon-object-align-vertical"></span> Smart Sync
-                                            <span class="pull-right">&#x2325;M</span>
+                                            <span class="float-end">&#x2325;M</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -428,17 +426,17 @@
                         </div>
                         <div class="log-sync-expanded">
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-default log-sync-back" data-toggle="tooltip" title="Move log earlier">
+                                <button type="button" class="btn btn-secondary log-sync-back" data-bs-toggle="tooltip" title="Move log earlier">
                                     <span class="glyphicon glyphicon-step-backward"></span>
                                 </button>
-                                <button type="button" class="btn btn-default log-sync-here" data-toggle="tooltip" title="Start log here">
+                                <button type="button" class="btn btn-secondary log-sync-here" data-bs-toggle="tooltip" title="Start log here">
                                     <span class="glyphicon glyphicon-object-align-left"></span>
                                 </button>
-                                <button type="button" class="btn btn-default log-sync-forward" data-toggle="tooltip" title="Move log later">
+                                <button type="button" class="btn btn-secondary log-sync-forward" data-bs-toggle="tooltip" title="Move log later">
                                     <span class="glyphicon glyphicon-step-forward"></span>
                                 </button>
                             </div>
-                            <input type="text" class="form-control video-offset" value="+0.0" size="7" data-toggle="tooltip" title="Enter a time offset">
+                            <input type="text" class="form-control video-offset" value="+0.0" size="7" data-bs-toggle="tooltip" title="Enter a time offset">
                         </div>
                     </div>
                 </div>
@@ -457,7 +455,7 @@
                     <canvas width="0" height="0" id="analyserCanvas"></canvas>
 
                     <span id="spectrumToolbar">
-                        <div id="spectrumType" data-toggle="tooltip" title="Type of Spectrum">
+                        <div id="spectrumType" data-bs-toggle="tooltip" title="Type of Spectrum">
                             <select id="spectrumTypeSelect">
                                 <option value="0">Frequency</option>
                                 <option value="1">Freq. vs Throttle</option>
@@ -465,7 +463,7 @@
                             </select>
                         </div>
 
-                        <div id="overdrawSpectrumType" data-toggle="tooltip" title="Show Filters">
+                        <div id="overdrawSpectrumType" data-bs-toggle="tooltip" title="Show Filters">
                             <select id="overdrawSpectrumTypeSelect">
                                 <option value="0">Show all filters</option>
                                 <option value="1">Show only Gyro filters</option>
@@ -476,7 +474,7 @@
                             </select>
                         </div>
 
-                        <div id="analyserResize" class="btn-nobg view-analyser-fullscreen" data-toggle="tooltip" title="Zoom Analyser Window">
+                        <div id="analyserResize" class="btn-nobg view-analyser-fullscreen" data-bs-toggle="tooltip" title="Zoom Analyser Window">
                             <span class="glyphicon glyphicon-resize-full"></span>
                             <span class="glyphicon glyphicon-resize-small"></span>
                         </div>
@@ -498,31 +496,31 @@
                     </datalist>
                 </div>
                 <canvas width="0" height="0" id="stickCanvas"></canvas>
-                <span class="log-open-legend-dialog glyphicon glyphicon-cog" data-toggle="tooltip" title="Show the legend"></span>
+                <span class="log-open-legend-dialog glyphicon glyphicon-cog" data-bs-toggle="tooltip" title="Show the legend"></span>
             </div>
             <div class="log-graph-config">
                 <h2 id="legend_title">Legend
-                    <span class="log-close-legend-dialog glyphicon glyphicon-remove" data-toggle="tooltip" title="Hide the legend"></span>
+                    <span class="log-close-legend-dialog glyphicon glyphicon-remove" data-bs-toggle="tooltip" title="Hide the legend"></span>
                 </h2>
                 <div class="log-index"></div>
                 <div class="log-graph-legend">
                 </div>
 
                 <div class="btn-group override-button-group" role="group">
-                    <button type="button" class="btn btn-nobg btn-svg-icon toggle-expo" data-toggle="tooltip" title="Expo On/Off">
+                    <button type="button" class="btn btn-nobg btn-svg-icon toggle-expo" data-bs-toggle="tooltip" title="Expo On/Off">
                         <svg width="24" height="24" viewBox="0 0 8.467 8.467">
                             <path fill="none" stroke="#FFF" stroke-linecap="round" stroke-width=".5" d="M0 4.233s2.117 5.292 4.233 0c2.117-5.291 4.234 0 4.234 0"/>
                             <path fill="#FFF" d="M4.233 0L3.175 1.058h2.117L4.233 0zm0 1.058L3.175 2.117h.794V6.35h-.794l1.058 1.058L5.292 6.35h-.794V2.117h.794L4.233 1.058zm0 6.35H3.175l1.058 1.059 1.059-1.059H4.233z"/>
                             </svg>
                     </button>
-                    <button type="button" class="btn btn-nobg btn-svg-icon toggle-smoothing" data-toggle="tooltip" title="Smoothing On/Off">
+                    <button type="button" class="btn btn-nobg btn-svg-icon toggle-smoothing" data-bs-toggle="tooltip" title="Smoothing On/Off">
                         <svg width="24" height="24" viewBox="0 0 8.467 8.467">
                             <path fill="none" stroke="#FFF" stroke-linecap="round" stroke-width=".5" d="M0 4.233s2.117 5.292 4.233 0c2.117-5.291 4.234 0 4.234 0"></path>
                             <path fill="none" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width=".265"
                                 d="M0 4.233l1.058 3.97 1.059-2.911 1.058 2.91 1.058-7.144 1.059 4.234L6.35.265l1.058 3.968h1.059"></path>
                         </svg>
                     </button>
-                    <button type="button" class="btn btn-nobg btn-svg-icon toggle-grid" data-toggle="tooltip" title="Grid On/Off">
+                    <button type="button" class="btn btn-nobg btn-svg-icon toggle-grid" data-bs-toggle="tooltip" title="Grid On/Off">
                         <svg width="24" height="24" viewBox="0 0 8.467 8.467">
                             <path fill="none" stroke="#FFF" stroke-linecap="round" stroke-width=".5" d="M0 4.233s2.117 5.292 4.233 0c2.117-5.291 4.234 0 4.234 0"/>
                             <g fill="none" stroke="#FFF" stroke-width=".198">
@@ -532,7 +530,7 @@
                     </button>
                 </div>
 
-                <button type="button" class="btn btn-default btn-block open-graph-configuration-dialog" data-toggle="tooltip" title="Setup chart pens">Graph setup</button>
+                <button type="button" class="btn btn-secondary w-100 open-graph-configuration-dialog" data-bs-toggle="tooltip" title="Setup chart pens">Graph setup</button>
             </div>
             <div class="mouseNotification"></div>
         </div>
@@ -632,29 +630,27 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" title="Close without saving changes">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="tooltip" title="Close without saving changes"></button>
                     <h4 class="modal-title">Configure graphs</h4>
                 </div>
                 <div class="modal-body" padding-left:5px;>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle config-graphs-add" data-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-primary dropdown-toggle config-graphs-add" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="glyphicon glyphicon-plus"></span> Add graph
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu" role="menu">
                         </ul>
                     </div>
-                    <button type="button" class="btn btn-default config-graphs-remove-all-graphs pull-right" style="display:none;">
+                    <button type="button" class="btn btn-secondary config-graphs-remove-all-graphs float-end" style="display:none;">
                         <span class="glyphicon glyphicon-trash"></span> Remove all graphs</button>
                     <ul class="list-unstyled config-graphs-list">
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default graph-configuration-dialog-cancel" data-dismiss="modal" data-toggle="tooltip"
+                    <button type="button" class="btn btn-secondary graph-configuration-dialog-cancel" data-bs-dismiss="modal" data-bs-toggle="tooltip"
                         title="Close without saving changes">Cancel</button>
-                    <button type="button" class="btn btn-primary graph-configuration-dialog-save" data-dismiss="modal" data-toggle="tooltip"
+                    <button type="button" class="btn btn-primary graph-configuration-dialog-save" data-bs-dismiss="modal" data-bs-toggle="tooltip"
                         title="Close and save changes">Save changes</button>
                 </div>
             </div>
@@ -665,9 +661,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" title="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="tooltip" title="Close"></button>
                     <h5 class="modal-title-craft"></h5>
                     <h5 class="modal-title-revision"></h5>
                 </div>
@@ -3099,9 +3093,9 @@
                 </div>
                 <!-- EMUF ONLY HEADER BODY END -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default header-dialog-toggle" data-toggle="tooltip" title="Change the header display for the respective firmware type">Cleanflight</button>
-                    <button type="button" class="btn btn-default header-dialog-cancel" data-dismiss="modal" data-toggle="tooltip" title="Close without saving changes">Close</button>
-                    <button type="button" class="btn btn-primary header-dialog-save" style="display:none;" data-dismiss="modal" data-toggle="tooltip"
+                    <button type="button" class="btn btn-secondary header-dialog-toggle" data-bs-toggle="tooltip" title="Change the header display for the respective firmware type">Cleanflight</button>
+                    <button type="button" class="btn btn-secondary header-dialog-cancel" data-bs-dismiss="modal" data-bs-toggle="tooltip" title="Close without saving changes">Close</button>
+                    <button type="button" class="btn btn-primary header-dialog-save" style="display:none;" data-bs-dismiss="modal" data-bs-toggle="tooltip"
                         title="Close and save changes">Save changes</button>
                 </div>
             </div>
@@ -3112,9 +3106,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-toggle="tooltip" title="Close the dialog box">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" data-bs-toggle="tooltip" title="Close the dialog box"></button>
                     <h4 class="modal-title">Shortcut Keys</h4>
                 </div>
                 <div class="modal-body">
@@ -3387,7 +3379,7 @@
                                             <span class="keys">
                                                 <div class="key">Ctrl</div>
                                                 <div class="normal">+</div>
-                                                <img src="./images/glyphs/scrollwheel.svg" data-toggle="tooltip" title="Mouse Scroll Wheel" />
+                                                <img src="./images/glyphs/scrollwheel.svg" data-bs-toggle="tooltip" title="Mouse Scroll Wheel" />
                                             </span>
                                             <div class="description">Adjust Smoothing of field in graph by hovering field in legend and scroll</div>
                                         </li>
@@ -3395,7 +3387,7 @@
                                             <span class="keys">
                                                 <div class="key">Shift</div>
                                                 <div class="normal">+</div>
-                                                <img src="./images/glyphs/scrollwheel.svg" data-toggle="tooltip" title="Mouse Scroll Wheel" />
+                                                <img src="./images/glyphs/scrollwheel.svg" data-bs-toggle="tooltip" title="Mouse Scroll Wheel" />
                                             </span>
                                             <div class="description">Adjust Zoom of field in graph by hovering field in legend and scroll</div>
                                         </li>
@@ -3403,7 +3395,7 @@
                                             <span class="keys">
                                                 <div class="key">Alt</div>
                                                 <div class="normal">+</div>
-                                                <img src="./images/glyphs/scrollwheel.svg"  data-toggle="tooltip" title="Mouse Scroll Wheel" />
+                                                <img src="./images/glyphs/scrollwheel.svg"  data-bs-toggle="tooltip" title="Mouse Scroll Wheel" />
                                             </span>
                                             <div class="description">Adjust Expo of field in graph by hovering field in legend and scroll</div>
                                         </li>
@@ -3415,7 +3407,7 @@
                     <div class="clear-both"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default keys-dialog-cancel" data-dismiss="modal" data-toggle="tooltip" title="Close the dialog box">Cancel</button>
+                    <button type="button" class="btn btn-secondary keys-dialog-cancel" data-bs-dismiss="modal" data-bs-toggle="tooltip" title="Close the dialog box">Cancel</button>
                 </div>
             </div>
         </div>
@@ -3429,16 +3421,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="pane-video-settings form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Video duration</label>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Video duration</label>
                             <div class="col-sm-9">
-                                <p class="form-control-static video-duration"></p>
+                                <p class="form-control-plaintext video-duration"></p>
                                 <p>You can use the I (In) and O (Out) keys while viewing the log to mark the start and end points
                                     of the video</p>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Framerate</label>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Framerate</label>
                             <div class="col-sm-9">
                                 <select class="form-control video-frame-rate">
                                     <option value="15">15 fps</option>
@@ -3455,8 +3447,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Resolution</label>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Resolution</label>
                             <div class="col-sm-9">
                                 <select class="form-control video-resolution">
                                     <option value="854x480">480p</option>
@@ -3465,8 +3457,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group video-dim-section">
-                            <label class="col-sm-3 control-label">Dim flight video</label>
+                        <div class="form-group row video-dim-section">
+                            <label class="col-sm-3 col-form-label">Dim flight video</label>
                             <div class="col-sm-9">
                                 <select class="form-control video-dim">
                                     <option value="0.0">0%</option>
@@ -3479,22 +3471,22 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Video format</label>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Video format</label>
                             <div class="col-sm-9">
-                                <p class="form-control-static video-format">WebM</p>
+                                <p class="form-control-plaintext video-format">WebM</p>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">Audio format</label>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Audio format</label>
                             <div class="col-sm-9">
-                                <p class="form-control-static audio-format">Not supported yet (no audio will be included)</p>
+                                <p class="form-control-plaintext audio-format">Not supported yet (no audio will be included)</p>
                             </div>
                         </div>
-                        <div class="form-group jumpy-video-note">
-                            <label class="col-sm-3 control-label">Note</label>
+                        <div class="form-group row jumpy-video-note">
+                            <label class="col-sm-3 col-form-label">Note</label>
                             <div class="col-sm-9">
-                                <p class="form-control-static">
+                                <p class="form-control-plaintext">
                                     If you experience problems with the background flight video being glitchy in the exported video,
                                     <a href="https://github.com/betaflight/blackbox-tools/blob/master/Readme.md" target="_blank" rel="noopener noreferrer">follow the instructions here</a> to re-encode your flight video.
                                 </p>
@@ -3505,23 +3497,23 @@
                         <progress max="100" value="0"></progress>
 
                         <div class="form-horizontal">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Rendered frames</label>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Rendered frames</label>
                                 <div class="col-sm-9">
-                                    <p class="form-control-static video-export-rendered-frames"></p>
+                                    <p class="form-control-plaintext video-export-rendered-frames"></p>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">File size</label>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">File size</label>
                                 <div class="col-sm-9">
-                                    <p class="form-control-static video-export-size"></p>
+                                    <p class="form-control-plaintext video-export-size"></p>
                                     <div class="alert alert-danger" role="alert">You must install this tool as a Chrome App in order to export videos larger than 500MB</div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Remaining time</label>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Remaining time</label>
                                 <div class="col-sm-9">
-                                    <p class="form-control-static video-export-remaining"></p>
+                                    <p class="form-control-plaintext video-export-remaining"></p>
                                 </div>
                             </div>
                         </div>
@@ -3531,9 +3523,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default video-export-dialog-cancel" data-dismiss="modal" data-toggle="tooltip" title="Cancel video generation">Cancel</button>
-                    <button type="button" class="btn btn-default video-export-dialog-close" data-dismiss="modal" data-toggle="tooltip" title="Close dialog box">Close</button>
-                    <button type="button" class="btn btn-primary video-export-dialog-start" data-toggle="tooltip" title="Start generating video file">Begin export</button>
+                    <button type="button" class="btn btn-secondary video-export-dialog-cancel" data-bs-dismiss="modal" data-bs-toggle="tooltip" title="Cancel video generation">Cancel</button>
+                    <button type="button" class="btn btn-secondary video-export-dialog-close" data-bs-dismiss="modal" data-bs-toggle="tooltip" title="Close dialog box">Close</button>
+                    <button type="button" class="btn btn-primary video-export-dialog-start" data-bs-toggle="tooltip" title="Start generating video file">Begin export</button>
                 </div>
             </div>
         </div>
@@ -3920,8 +3912,8 @@
                     <div class="clear-both"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default user-settings-dialog-cancel" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary user-settings-dialog-save" data-dismiss="modal">Save</button>
+                    <button type="button" class="btn btn-secondary user-settings-dialog-cancel" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary user-settings-dialog-save" data-bs-dismiss="modal">Save</button>
                 </div>
             </div>
         </div>
@@ -3947,7 +3939,13 @@
         window.jQuery = window.$ = require('./js/vendor/jquery-1.11.3.min.js');
     </script>
     <script src="js/vendor/jquery-ui-1.11.4.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Same swallowed-export bug as jQuery above: Bootstrap 5's UMD wrapper also checks for a
+        // real require() (module/exports), so a plain <script src> load never sets
+        // window.bootstrap. require() it explicitly. The bundle variant (not bootstrap.min.js)
+        // is used so Popper ships inline, avoiding a separate @popperjs/core dependency.
+        window.bootstrap = require('./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js');
+    </script>
     <script src="js/vendor/jquery.ba-throttle-debounce.js"></script>
     <script src="js/vendor/three.min.js"></script>
     <script src="js/vendor/jquery.nouislider.all.min.js"></script>

@@ -429,7 +429,7 @@ function UserSettingsDialog(dialog, onLoad, onSave) {
 				$(".verticalBar").prop('checked', currentSettings.drawVerticalBar);
 			}
 
-            dialog.modal('show');
+            bootstrap.Modal.getOrCreateInstance(dialog[0]).show();
 
     };
 

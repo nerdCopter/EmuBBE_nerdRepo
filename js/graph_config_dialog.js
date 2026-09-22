@@ -110,7 +110,7 @@ function GraphConfigurationDialog(dialog, onSave) {
                     + '<td><input name="linewidth" class="form-control" type="text"/></td>'
                     + '<td><select class="color-picker"></select></td>'
                     + '<td><input name="grid" type="checkbox"/></td>'
-                    + '<td><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>'
+                    + '<td><button type="button" class="btn btn-secondary btn-sm"><span class="glyphicon glyphicon-trash"></span></button></td>'
                 + '</tr>'
             ),
             select = $('select.form-control', elem),
@@ -159,12 +159,12 @@ function GraphConfigurationDialog(dialog, onSave) {
                     + '<dl>'
                         + '<dt><span>'
                             + '<h4 style="display:inline-block;vertical-align: baseline;"><span class="glyphicon glyphicon-minus"></span>Graph ' + '<span class="graph-index-number">' + (index + 1) + '</span>' + '</h4>'
-                                + '<button type="button" class="btn btn-default btn-sm pull-right remove-single-graph-button" style="display:inline-block;vertical-align: baseline;"><span class="glyphicon glyphicon-trash"></span> Remove graph ' + '</button>'
+                                + '<button type="button" class="btn btn-secondary btn-sm float-end remove-single-graph-button" style="display:inline-block;vertical-align: baseline;"><span class="glyphicon glyphicon-trash"></span> Remove graph ' + '</button>'
                             + '</span></dt>'
                             + '<dd>'
                             + '<div class="form-horizontal">'
-                                + '<div class="form-group">'
-                                    + '<label class="col-sm-2 control-label">Axis label</label>'
+                                + '<div class="form-group row">'
+                                    + '<label class="col-sm-2 col-form-label">Axis label</label>'
                                     + '<div class="col-sm-10">'
                                         + '<ul class="config-graph-header form-inline list-unstyled">'
                                             + '<li class="config-graph-header">'
@@ -174,8 +174,8 @@ function GraphConfigurationDialog(dialog, onSave) {
                                         + '</ul>'
                                     + '</div>'
                                 + '</div>'
-                                + '<div class="form-group config-graph-field-header">'
-                                    + '<label class="col-sm-2 control-label">Fields</label>'
+                                + '<div class="form-group row config-graph-field-header">'
+                                    + '<label class="col-sm-2 col-form-label">Fields</label>'
                                     + '<div class="col-sm-10">'
                                         + '<table class="config-graph-field-list">'
                                             + '<thead>'
@@ -192,7 +192,7 @@ function GraphConfigurationDialog(dialog, onSave) {
                                             + '<tbody>'
                                             + '</tbody>'
                                         + '</table>'
-                                        + '<button type="button" class="btn btn-default btn-sm add-field-button"><span class="glyphicon glyphicon-plus"></span> Add field</button>'
+                                        + '<button type="button" class="btn btn-secondary btn-sm add-field-button"><span class="glyphicon glyphicon-plus"></span> Add field</button>'
                                     + '</div>'
                                 + '</div>'
                             + '</div>'
@@ -280,16 +280,16 @@ function GraphConfigurationDialog(dialog, onSave) {
         for (i = 0; i < exampleGraphs.length; i++) {
             var 
                 graph = exampleGraphs[i],
-                li = $('<li><a href="#"></a></li>');
-            
+                li = $('<li><a href="#" class="dropdown-item"></a></li>');
+
             $('a', li)
                 .text(graph.label)
                 .data('graphIndex', i);
-            
+
             menu.append(li);
-            
+
             if (graph.dividerAfter) {
-                menu.append('<li class="divider"></li>');
+                menu.append('<li><hr class="dropdown-divider"></li>');
             }
         }
     }
@@ -393,7 +393,7 @@ function GraphConfigurationDialog(dialog, onSave) {
     }
     
     this.show = function(flightLog, config) {
-        dialog.modal('show');
+        bootstrap.Modal.getOrCreateInstance(dialog[0]).show();
         
         activeFlightLog = flightLog;
         
@@ -422,7 +422,8 @@ function GraphConfigurationDialog(dialog, onSave) {
         )
         .disableSelection();
 
-    exampleGraphsButton.dropdown();
+    // Bootstrap 5 auto-wires [data-bs-toggle="dropdown"] via its own delegated click
+    // listener, so no explicit dropdown init call is needed here.
     exampleGraphsMenu.on("click", "a", function(e) {
         var 
             graph = exampleGraphs[$(this).data("graphIndex")],
@@ -432,7 +433,7 @@ function GraphConfigurationDialog(dialog, onSave) {
         updateRemoveAllButton();
         
         // Dismiss the dropdown button
-        exampleGraphsButton.dropdown("toggle");
+        bootstrap.Dropdown.getOrCreateInstance(exampleGraphsButton[0]).toggle();
         
         e.preventDefault();
     });

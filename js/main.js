@@ -357,7 +357,7 @@ function BlackboxLogViewer() {
                 
                 logIndexPicker.append(option);
             } else {
-                holder = $('<div class="form-control-static no-wheel"></div>');
+                holder = $('<div class="form-control-plaintext no-wheel"></div>');
                 
                 holder.text(logLabel);
                 logIndexContainer.append(holder);
@@ -1020,10 +1020,13 @@ function BlackboxLogViewer() {
     
     $(document).ready(function() {
 
-        $('[data-toggle="tooltip"]').tooltip({trigger: "hover", placement: "auto bottom"}); // initialise tooltips
-        $('[data-toggle="dropdown"]').dropdown(); // initialise menus
+        // Bootstrap 5 auto-wires [data-bs-toggle="dropdown"] via its own delegated click
+        // listener, so no explicit dropdown init call is needed here. Tooltips remain opt-in.
+        $('[data-bs-toggle="tooltip"]').each(function() {
+            new bootstrap.Tooltip(this, {trigger: "hover", placement: "bottom"});
+        });
         $('a.auto-hide-menu').click(function() {
-            var test = $(this).closest('.dropdown').children().first().dropdown("toggle");
+            bootstrap.Dropdown.getOrCreateInstance($(this).closest('.dropdown').children().first()[0]).toggle();
         });
 
         // Get Latest Version Information
@@ -1518,11 +1521,11 @@ function BlackboxLogViewer() {
                 .addClass('disabled')
                 .css('pointer-events', 'all !important')
                 .attr({
-                    'data-toggle': 'tooltip',
-                    'data-placement': 'bottom',
+                    'data-bs-toggle': 'tooltip',
+                    'data-bs-placement': 'bottom',
                     'title': "Not supported by your browser, use Google Chrome instead"
-                })
-                .tooltip();
+                });
+            new bootstrap.Tooltip(document.querySelector(".btn-video-export"));
         }
 
         $(window).resize(function() { updateCanvasSize(); /*updateHeaderSize()*/ });
@@ -2089,9 +2092,9 @@ function BlackboxLogViewer() {
                 setGraphZoom(100, true);
             });
         
-        $('.navbar-toggle').click(function(e) {
-            $('.navbar-collapse').collapse('toggle');
-            
+        $('.navbar-toggler').click(function(e) {
+            bootstrap.Collapse.getOrCreateInstance(document.querySelector('.navbar-collapse')).toggle();
+
             e.preventDefault();
         });
 

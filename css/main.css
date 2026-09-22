@@ -31,7 +31,7 @@ a.disabled {
         float: none;
         background-color: #2e2e2e;
     }
-    .navbar-toggle {
+    .navbar-toggler {
         display: block;
         background-color: #2e2e2e;
     }
@@ -58,11 +58,29 @@ a.disabled {
         margin: 15px 0;
     }
     /* since 3.1.0 */
-    .navbar-collapse.collapse.in { 
+    .navbar-collapse.collapse.show {
         display: block!important;
     }
     .collapsing {
         overflow: hidden!important;
+    }
+}
+
+/* Bootstrap 5's navbar-expand-* only ships a min-width media query (desktop-and-up); this
+   repo needs the collapse threshold at 1140px, which sits between BS5's lg (992px) and xl
+   (1200px) breakpoints, so the expand-xl scaffolding above is activated from 1141px instead
+   of xl's default 1200px. */
+@media (min-width: 1141px) {
+    .navbar-expand-xl {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+    .navbar-expand-xl .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto;
+    }
+    .navbar-expand-xl .navbar-toggler {
+        display: none;
     }
 }
 
@@ -71,7 +89,7 @@ a.disabled {
 }
 
 @media (min-width: 768px) {
-    .welcome-pane .panel-body {
+    .welcome-pane .card-body {
         min-height: 100px;
     }
 
@@ -139,7 +157,7 @@ a.disabled {
         font-size: 115%;
     }
 
-    div.log-index div.form-control-static {
+    div.log-index div.form-control-plaintext {
         min-height: 0px;
         padding-top: 0px;
         padding-bottom: 0px;
@@ -303,6 +321,9 @@ html:not(.has-log):not(.has-video) .header-pane {
 }
 
 .form-group {
+    /* Bootstrap 5 dropped .form-group entirely (replaced by the .mb-3 utility); restated
+       here since this codebase still uses the old class name as a spacing hook. */
+    margin-bottom: 1rem;
     color: rgb(228, 228, 228);
 }
 /* Bootstrap-styled file inputs by abeautifulsite http://www.abeautifulsite.net/whipping-file-inputs-into-shape-with-bootstrap-3/ */
@@ -451,17 +472,10 @@ html.has-log .log-graph-config {
     background-color: #3c3c3c;
 }
 
-.open>.dropdown-menu {
+.dropdown-menu.show {
     background-color: #3c3c3c;
 }
 
-button.close {
-    color: white;
-}
-
-.close:focus, .close:hover {
-    color:white;
-}
 .config-graph-field-header {
     margin-bottom: 0;
     font-size: 12px;
@@ -1117,25 +1131,33 @@ progress {
     width:100%;
     height:20px;
 }
+/* Bootstrap 5 dropped .jumbotron entirely; the base box-model and typography rules below
+   restate what Bootstrap 3 provided (this project only ever overrode color/background). */
 .jumbotron {
     padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 6px;
     background-color: #3d3f3e;
 }
 
 .jumbotron p {
+    margin-bottom: 15px;
+    font-size: 21px;
+    font-weight: 200;
     color: #dcdcdc;
 }
 
 .jumbotron .h1, .jumbotron h1 {
+    font-size: 63px;
     color: #dcdcdc;
 }
 
-.panel-default>.panel-heading {
+.card>.card-header {
     background-image: linear-gradient(to bottom,#5d5d5d 0,#484747 100%);
     color: #dcdcdc;
 }
 
-.panel-default {
+.card {
     border-color: #3e3e3e;
     background-color:#3e3e3e ;
     color: #dcdcdc;
@@ -1152,7 +1174,7 @@ progress {
     color: #dcdcdc;
 }
 
-.navbar-inverse .navbar-brand {
+.navbar-dark .navbar-brand {
     color: #EAEAEA;
 }
 
